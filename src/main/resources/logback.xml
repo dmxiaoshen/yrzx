@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<configuration>
+    <appender name="admin" class="ch.qos.logback.core.rolling.RollingFileAppender">
+       <File>${admin_log}</File>
+       <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+         <FileNamePattern>${admin_i_log}</FileNamePattern>   
+         <MinIndex>1</MinIndex>   
+         <MaxIndex>5</MaxIndex>   
+       </rollingPolicy> 
+       <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy"> 
+         <MaxFileSize>5MB</MaxFileSize>   
+       </triggeringPolicy> 
+       <layout class="ch.qos.logback.classic.PatternLayout"> 
+        <Pattern>%date [%thread] %-5level %logger{80} - %msg%n</Pattern>   
+       </layout> 
+    </appender>
+   
+     <appender name="front" class="ch.qos.logback.core.rolling.RollingFileAppender">
+       <File>${front_log}</File>
+       <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+         <FileNamePattern>${front_i_log}</FileNamePattern>   
+         <MinIndex>1</MinIndex>   
+         <MaxIndex>5</MaxIndex>   
+       </rollingPolicy> 
+       <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy"> 
+         <MaxFileSize>5MB</MaxFileSize>   
+       </triggeringPolicy> 
+       <layout class="ch.qos.logback.classic.PatternLayout"> 
+        <Pattern>%date [%thread] %-5level %logger{80} - %msg%n</Pattern>   
+       </layout> 
+    </appender>
+ 
+ <appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">       
+        <layout class="ch.qos.logback.classic.PatternLayout">  
+            <pattern>%date [%thread] %-5level %logger{80} - %msg%n</pattern>  
+        </layout>  
+</appender> 
+ 
+ <logger name="com.lljz.yrzx.common.admin" level="${admin_log_level}"> 
+     <appender-ref ref="admin" />
+ </logger>
+ 
+ <logger name="com.lljz.yrzx.common.front" level="${front_log_level}"> 
+     <appender-ref ref="front" />
+ </logger>
+ 
+ <root> 
+ 	 <appender-ref ref="stdout" level="${console_log_level}"/> 
+ </root> 
+ </configuration>  
